@@ -1,33 +1,58 @@
 import { Container, Row, Col } from 'react-bootstrap';
-
-const Post = ({posts}) => {
+import moment from 'moment';
+import './Post.css';
+const Post = ({ posts, removePost }) => {
   return (
+    <Container>
+      <Row className='justify-content-md-center'>
+        {posts.hits?.map(post => {
+          const {
+            objectID,
+            url,
+            title,
+            author,
+            points,
+            num_comments,
+            created_at,
+          } = post;
 
-     <Container>
-     <Row className='justify-content-md-center'>
-       {posts?.map((post, index) => (
-         <Col className='p-3' sm='12' md='6' lg='6' key={post.objectID}>
-           {/* <Col className="post" md='6' lg='6' key={post.objectID}> */}
-           <div className='post p-3'>
-             <h5 className='text-start'>
-               {index + 1}. {post.title}{' '}
-             </h5>
-             <p className='text-start'>
-               {' '}
-               Author: {post.author} | {post.points} points |{' '}
-               {post.num_comments} comments{' '}
-             </p>
-             <p className='text-start'>
-               <a href={post.url} target='_blank' rel='noreferrer'>
-                 {' '}
-                 View Post{' '}
-               </a>
-             </p>
-           </div>
-         </Col>
-       ))}
-     </Row>
-   </Container>
+          const timeSince = moment(created_at, 'YYYY-MM-DDThh:mm:ss').fromNow();
+          return (
+
+            <Col className='p-3' sm='12' md='6' lg='6' key={objectID}>
+              <div className='post p-3'>
+                <h5 className='text-start'>
+                  <a href={url} target='_blank' rel='noreferrer'>
+                    {title}
+                  </a>{' '}
+                </h5>
+                {!url && <p className="warning">No URL for this article</p>}
+                {/* <p className='text-start'>
+                  Author: {author} | {timeSince}{' '}<span className=""></span>
+                </p> */}
+                <p className='text-start'>
+                <span className="tag">Author: {author}</span> | {' '}
+                <span className="tag">{timeSince}</span> | {' '}
+                <span className='tag'>{points} points</span> | {' '}
+                <span className='tag'>{num_comments} comments</span>{' '}
+                </p>
+                {/* <p className='text-start'>
+                  <span className='tag'>{points} points</span> |{' '}
+                  <span className='tag'>{num_comments} comments</span>{' '}
+                </p> */}
+                {/* <p className='text-start danger'>
+                  <button
+                    className='btn-remove'
+                    onClick={() => removePost(objectID)}>
+                    Remove Story{' '}
+                  </button>
+                </p> */}
+              </div>
+            </Col>
+          );
+        })}
+      </Row>
+    </Container>
   );
 };
 
