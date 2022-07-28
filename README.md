@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Assuming you have Node installed. If not, you will need to install it.
+
+1. To install, clone, or download the repository to your selected root directory.
+2. Navigate to the app directory in terminal, and run `npm install` to install dependencies.
+3. Run `npm start` to open the project in the local server.
+
 ## Available Scripts
 
 In the project directory, you can run:
