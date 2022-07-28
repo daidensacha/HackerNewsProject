@@ -1,9 +1,11 @@
-import { useState, useEffect, CSSProperties } from 'react';
+import { useState, useEffect } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import axios from 'axios';
 import SearchForm from './components/SearchForm';
 import Post from './components/Post';
 import Pagination from './components/Pagination';
+import ErrorPage from './components/ErrorPage';
+import Footer from './components/Footer';
 // import { Container, Row, Col } from 'react-bootstrap';
 // Import styles
 import './App.css';
@@ -54,15 +56,19 @@ export default function App() {
   }, [search, pageNumber]);
 
   const removePost = id => {
-    // console.log({...posts, hits: posts.hits.filter(post => post.objectID !== id),})
-    return {...posts, hits: posts.hits.filter((post) => post.objectID !== id),};
+    console.log(id);
+    setPosts({
+      ...posts,
+      hits: posts.hits.filter(post => post.objectID !== id),
+    });
+  };
 
-    // console.log(id)
-  }
+  console.log(posts);
   return (
     <div className='App'>
       <SearchForm setSearch={setSearch} search={search} />
-      {!posts.nbHits && <h2>No results returned for search {search}... </h2>}
+      {/* {!posts.nbHits && <h2>No results returned for search {search}... </h2>} */}
+      {!posts.nbHits && <ErrorPage />}
       {isError && <h2>Oh, something is amiss!</h2>}
       {!isError && posts.nbHits && <h2> Posts about {search}</h2>}
       <hr />
@@ -85,6 +91,7 @@ export default function App() {
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
       /> */}
+      <Footer />
     </div>
   );
 }
