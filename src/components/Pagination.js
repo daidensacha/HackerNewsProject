@@ -11,7 +11,6 @@ const Pagination = ({ page, pages, posts, setPageNumber, pageNumber }) => {
       if (prevPage < 0) {
         prevPage = posts.nbPages - 1;
       }
-      // return setPosts({ ...posts, page: page - 1 });
       return setPageNumber(prevPage);
     }
     if (val === 'inc') {
@@ -22,23 +21,27 @@ const Pagination = ({ page, pages, posts, setPageNumber, pageNumber }) => {
       return setPageNumber(nextPage);
     }
   };
-  // };
 
   return (
-    <Container className="pagination-container">
+    <Container className='pagination-container'>
       <Row className='justify-content-md-center'>
         <Col md lg='4'>
           <div className='pagination justify-content-md-center'>
-            <Button onClick={() => handlePagination('dec')} className="btn-pagination" variant='dark link'>
+            <Button
+              onClick={() => handlePagination('dec')}
+              className='btn-pagination'
+              variant='dark link'>
               <CaretLeft /> Prev
             </Button>
             <p className='page-number mx-2 my-auto'>
               Page {pageNumber + 1} of {pages}
             </p>
-            <Button onClick={() => handlePagination('inc')} className="btn-pagination" variant='dark link'>
+            <Button
+              onClick={() => handlePagination('inc')}
+              className='btn-pagination'
+              variant='dark link'>
               Next <CaretRight />
             </Button>
-
           </div>
         </Col>
       </Row>

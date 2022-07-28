@@ -6,7 +6,6 @@ import Post from './components/Post';
 import Pagination from './components/Pagination';
 import ErrorPage from './components/ErrorPage';
 import Footer from './components/Footer';
-// import { Container, Row, Col } from 'react-bootstrap';
 // Import styles
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,9 +20,6 @@ export default function App() {
   let [color, setColor] = useState('#a1a1a1ff');
 
   useEffect(() => {
-    // const apiUrl = `https://hn.algolia.com/api/v1/search?query=${search}&tags=story`;
-    // https://hn.algolia.com/api/v1/search?query=search_by_date&tags=story
-    // https://hn.algolia.com/api/v1/search_by_date?query=react&tags=story
     const url = `https://hn.algolia.com/api/v1/search_by_date`;
     //   const params = {
     //     url: `https://hn.algolia.com/api/v1/search`,
@@ -63,15 +59,18 @@ export default function App() {
     });
   };
 
-  console.log(posts);
+  // console.log(posts);
   return (
     <div className='App'>
       <SearchForm setSearch={setSearch} search={search} />
-      {/* {!posts.nbHits && <h2>No results returned for search {search}... </h2>} */}
-      {!posts.nbHits && <ErrorPage />}
+
       {isError && <h2>Oh, something is amiss!</h2>}
       {!isError && posts.nbHits && <h2> Posts about {search}</h2>}
       <hr />
+      <div className='spinner'>
+        {loading && <ClipLoader color={color} loading={loading} size={150} />}
+      </div>
+      {!posts.nbHits && <ErrorPage />}
       <Pagination
         page={posts.page}
         pages={posts.nbPages}
@@ -79,18 +78,7 @@ export default function App() {
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
       />
-      <div className='spinner'>
-        {loading && <ClipLoader color={color} loading={loading} size={150} />}
-      </div>
-
       <Post posts={posts} removePost={removePost} />
-      {/* <Pagination
-        page={posts.page}
-        pages={posts.nbPages}
-        posts={posts}
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-      /> */}
       <Footer />
     </div>
   );

@@ -34,7 +34,6 @@
 }
 
 .post a:hover {
-  /* text-decoration: underline; */
   color: #66cdef;
 }
 
@@ -43,7 +42,6 @@
   padding: 3px 8px;
   border-radius: 0px 13px;
   margin: 0.2rem;
-  /* border: 1px solid var(--blue); */
   border: 1px solid hsl(217, 97%, 39%);
   background-color: rgb(2, 55, 90);
   color: var(--white);

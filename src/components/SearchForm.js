@@ -2,14 +2,6 @@ import { Button, Form, InputGroup, Container, Row, Col } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 import './SearchForm.css';
 
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
-// import InputGroup from "react-bootstrap/InputGroup";
-
-// import Container from "react-bootstrap/Container";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
-
 function SearchForm({ setSearch, search }) {
   const submitHandler = e => {
     e.preventDefault();
@@ -17,10 +9,7 @@ function SearchForm({ setSearch, search }) {
     setSearch(e.target.search.value);
     e.target.reset();
   };
-  // const searchHandler = e => {
-  //   e.preventDefault();
-  //   setSearch(e.target.value);
-  // };
+
   return (
     <div className='search-bar py-3 mb-5'>
       <Container>
@@ -39,11 +28,7 @@ function SearchForm({ setSearch, search }) {
                   aria-label='Search'
                   aria-describedby='basic-addon2'
                 />
-                <Button
-                  // className="btn-outline-teal"
-                  variant='teal'
-                  type='submit'
-                  id='button-addon2'>
+                <Button variant='teal' type='submit' id='button-addon2'>
                   <Search />
                 </Button>
               </InputGroup>
