@@ -31,24 +31,20 @@ export default function App() {
     // const { url, searchQuery, tagsQuery, pageQuery, dateQuery } = params;
 
     const endpoint = `${url}?query=${search}&tags=story&page=${pageNumber}`;
-    // const endpoint = `https://hn.algolia.com/api/v1/search?query=react&tags=story`;
-    // const endpoint = `${url}?query=${search}&tags=story`;
-    // fetch(endpoint)
-    //   .then(response => response.json())
-    //   // .then((data) => console.log(data))
-    //   .then(data => setPosts(data.hits))
-    //   .catch(err => console.log(err));
-    axios
-      .get(endpoint)
-      .then(response => {
-        setPosts(response.data);
+    const fetchingData = async () => {
+      try {
+        const response = await fetch(endpoint);
+        if (!response.ok) throw new Error('Something went wrong!');
+        const results = await response.json();
+        setPosts(results);
         setLoading(false);
-      })
-      .catch(err => {
+      } catch (err) {
         setIsError(true);
         setLoading(true);
-        console.log('error', err);
-      });
+        console.log(err);
+      }
+    };
+    fetchingData();
   }, [search, pageNumber]);
 
   const removePost = id => {
