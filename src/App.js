@@ -28,16 +28,8 @@ export default function App() {
     //     pageQuery: 1,
     //     dateQuery: Date.now(),
     //   };
-    // const { url, searchQuery, tagsQuery, pageQuery, dateQuery } = params;
-
     const endpoint = `${url}?query=${search}&tags=story&page=${pageNumber}`;
-    // const endpoint = `https://hn.algolia.com/api/v1/search?query=react&tags=story`;
-    // const endpoint = `${url}?query=${search}&tags=story`;
-    // fetch(endpoint)
-    //   .then(response => response.json())
-    //   // .then((data) => console.log(data))
-    //   .then(data => setPosts(data.hits))
-    //   .catch(err => console.log(err));
+
     axios
       .get(endpoint)
       .then(response => {
