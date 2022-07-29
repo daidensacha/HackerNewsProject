@@ -1,4 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import StarRating from './StarRating';
 import moment from 'moment';
 import './Post.css';
 const Post = ({ posts, removePost }) => {
@@ -34,6 +35,7 @@ const Post = ({ posts, removePost }) => {
                     <span className='tag'>{points} points</span>{' '}
                     <span className='tag'>{num_comments} comments</span>{' '}
                   </p>
+                  <StarRating totalStars={5} points={points}/>
                   <p className='text-start danger'>
                     <button
                       className='btn-remove'
