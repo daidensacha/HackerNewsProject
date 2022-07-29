@@ -52,7 +52,7 @@ export default function App() {
   }, [search, pageNumber]);
 
   const removePost = id => {
-    console.log(id);
+    // console.log(id);
     setPosts({
       ...posts,
       hits: posts.hits.filter(post => post.objectID !== id),
