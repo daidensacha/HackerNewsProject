@@ -5,7 +5,7 @@
   border-top: 1px solid var(--grey);
   border-bottom: 15px solid var(--dark);
   padding: 1rem 0;
-  margin: 1rem 0 0;
+  /* margin: 1rem 0 0; */
 }
 
 .footer img {

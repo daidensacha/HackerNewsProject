@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
-import axios from 'axios';
 import SearchForm from './components/SearchForm';
 import Post from './components/Post';
 import Pagination from './components/Pagination';
@@ -13,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function App() {
   const [posts, setPosts] = useState({});
   const [pageNumber, setPageNumber] = useState(0);
-  const [search, setSearch] = useState('react');
+  const [search, setSearch] = useState('react.js');
 
   const [isError, setIsError] = useState(false);
   let [loading, setLoading] = useState(true);
@@ -67,13 +66,15 @@ export default function App() {
         {loading && <ClipLoader color={color} loading={loading} size={150} />}
       </div>
       {!posts.nbHits && <ErrorPage />}
-      <Pagination
-        page={posts.page}
-        pages={posts.nbPages}
-        posts={posts}
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-      />
+      {posts.nbHits && (
+        <Pagination
+          page={posts.page}
+          pages={posts.nbPages}
+          posts={posts}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+        />
+      )}
       <Post posts={posts} removePost={removePost} />
       <Footer />
     </div>

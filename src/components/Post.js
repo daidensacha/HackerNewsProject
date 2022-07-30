@@ -33,9 +33,10 @@ const Post = ({ posts, removePost }) => {
                     <span className='tag'>Author: {author}</span>{' '}
                     <span className='tag'>{timeSince}</span>{' '}
                     <span className='tag'>{points} points</span>{' '}
+                    <span className='tag'><StarRating totalStars={5} points={points}/></span>{' '}
                     <span className='tag'>{num_comments} comments</span>{' '}
                   </p>
-                  <StarRating totalStars={5} points={points}/>
+                  {/* <StarRating totalStars={5} points={points}/> */}
                   <p className='text-start danger'>
                     <button
                       className='btn-remove'
