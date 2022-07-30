@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import './StarRating.css';
 
@@ -8,18 +8,35 @@ function Star({ selected = false, onSelect }) {
   return <FaStar color={selected ? 'gold' : 'grey'} onClick={onSelect} />;
 }
 
-function StarRating({ totalStars = 5, points}) {
-  const [selectedStars, setSelectedStars] = useState(0);
+function StarRating({ totalStars = 5, points }) {
 
-  // if (points < 50) {
-  //   setSelectedStars(1)
-  // }
+  // console.log(points)
+  let stars;
+  switch (true) {
+    case points < 50:
+      stars = 1;
+      break;
+    case points < 100:
+     stars = 2;
+      break;
+    case points < 150:
+      stars = 3;
+      break;
+    case points < 200:
+      stars = 4;
+      break;
+    case points >= 250:
+      stars = 5;
+      break;
+    default:
+      stars = 0;
+      break;
+  }
 
   return createArray(totalStars).map((n, i) => (
     <Star
       key={i}
-      selected={selectedStars > i}
-      onSelect={() => setSelectedStars(i + 1)}
+      selected={stars > i}
     />
   ));
 }

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
-import axios from 'axios';
 import SearchForm from './components/SearchForm';
 import Post from './components/Post';
 import Pagination from './components/Pagination';
@@ -67,13 +66,15 @@ export default function App() {
         {loading && <ClipLoader color={color} loading={loading} size={150} />}
       </div>
       {!posts.nbHits && <ErrorPage />}
-      <Pagination
-        page={posts.page}
-        pages={posts.nbPages}
-        posts={posts}
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-      />
+      {posts.nbHits && (
+        <Pagination
+          page={posts.page}
+          pages={posts.nbPages}
+          posts={posts}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+        />
+      )}
       <Post posts={posts} removePost={removePost} />
       <Footer />
     </div>
