@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function App() {
   const [posts, setPosts] = useState({});
   const [pageNumber, setPageNumber] = useState(0);
-  const [search, setSearch] = useState('react');
+  const [search, setSearch] = useState('react.js');
 
   const [isError, setIsError] = useState(false);
   let [loading, setLoading] = useState(true);
