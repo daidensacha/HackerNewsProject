@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import StarRating from './StarRating';
 import moment from 'moment';
-import './Post.css';
+import './Post.scss';
 const Post = ({ posts, removePost }) => {
   return (
     <Container>
@@ -33,7 +33,9 @@ const Post = ({ posts, removePost }) => {
                     <span className='tag'>Author: {author}</span>{' '}
                     <span className='tag'>{timeSince}</span>{' '}
                     <span className='tag'>{points} points</span>{' '}
-                    <span className='tag'><StarRating totalStars={5} points={points}/></span>{' '}
+                    <span className='tag'>
+                      <StarRating totalStars={5} points={points} />
+                    </span>{' '}
                     <span className='tag'>{num_comments} comments</span>{' '}
                   </p>
                   {/* <StarRating totalStars={5} points={points}/> */}

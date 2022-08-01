@@ -5,7 +5,7 @@ import './SearchForm.css';
 function SearchForm({ setSearch, search }) {
   const submitHandler = e => {
     e.preventDefault();
-    console.log(e.target.search.value);
+    // console.log(e.target.search.value);
     setSearch(e.target.search.value);
     e.target.reset();
   };

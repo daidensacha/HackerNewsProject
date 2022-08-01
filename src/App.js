@@ -10,13 +10,22 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
+
+
+
   const [posts, setPosts] = useState({});
+  const [localPosts, setLocalPosts] = useState({});
   const [pageNumber, setPageNumber] = useState(0);
   const [search, setSearch] = useState('react.js');
 
   const [isError, setIsError] = useState(false);
   let [loading, setLoading] = useState(true);
   let [color, setColor] = useState('#a1a1a1ff');
+
+  let postsLocal = JSON.parse(localStorage.getItem('posts')) || [];
+  useEffect(() => {
+    setLocalPosts(postsLocal);
+  }, []);
 
   useEffect(() => {
     const url = `https://hn.algolia.com/api/v1/search_by_date`;
@@ -46,6 +55,16 @@ export default function App() {
     fetchingData();
   }, [search, pageNumber]);
 
+  useEffect(() => {
+    // const localPosts = JSON.parse(localStorage.getItem('posts'));
+    // if (localPosts) {
+    //   setLocalPosts(localPosts);
+      saveLocalPosts();
+    // }
+    }, [])
+
+
+
   const removePost = id => {
     // console.log(id);
     setPosts({
@@ -54,7 +73,16 @@ export default function App() {
     });
   };
 
+  // Save posts in local storage
+  const saveLocalPosts = () => {
+    localStorage.setItem('posts', JSON.stringify(posts));
+  };
+
+  // console.log(`Posts: ${posts}`);
+  // console.log(`LocalPosts: ${localPosts}`);
   // console.log(posts);
+  console.log('Local' , localPosts);
+
   return (
     <div className='App'>
       <SearchForm setSearch={setSearch} search={search} />

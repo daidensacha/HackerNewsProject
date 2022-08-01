@@ -1,13 +1,14 @@
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { CaretLeft, CaretRight } from 'react-bootstrap-icons';
-import './Pagination.css';
+import classnames from 'classnames';
+import styles from './Pagination.module.scss';
 
 const Pagination = ({ page, pages, posts, setPageNumber, pageNumber }) => {
   const handlePagination = val => {
     // console.log(val);
     if (val === 'dec') {
       let prevPage = pageNumber - 1;
-      console.log(prevPage);
+      // console.log(prevPage);
       if (prevPage < 0) {
         prevPage = posts.nbPages - 1;
       }
@@ -23,22 +24,22 @@ const Pagination = ({ page, pages, posts, setPageNumber, pageNumber }) => {
   };
 
   return (
-    <Container className='pagination-container'>
+    <Container className={styles.paginationContainer}>
       <Row className='justify-content-md-center'>
         <Col md lg='4'>
-          <div className='pagination justify-content-md-center'>
+          <div className={classnames(styles.pagination, styles.justifyContentMdCenter)}>
             <Button
               onClick={() => handlePagination('dec')}
-              className='btn-pagination'
+              className={styles.btnPagination}
               variant='dark link'>
               <CaretLeft /> Prev
             </Button>
-            <p className='page-number mx-2 my-auto'>
+            <p className={classnames(styles.pageNumber, styles.mx2, styles.myAuto)}>
               Page {pageNumber + 1} of {pages}
             </p>
             <Button
               onClick={() => handlePagination('inc')}
-              className='btn-pagination'
+              className={styles.btnPagination}
               variant='dark link'>
               Next <CaretRight />
             </Button>
